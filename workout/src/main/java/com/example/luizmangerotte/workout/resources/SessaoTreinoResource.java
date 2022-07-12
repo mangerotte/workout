@@ -1,14 +1,14 @@
 package com.example.luizmangerotte.workout.resources;
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.SessaoTreino;
 import com.example.luizmangerotte.workout.entities.enums.GrupamentosMusculares;
 import com.example.luizmangerotte.workout.services.SessaoTreinoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,6 +34,13 @@ public class SessaoTreinoResource {
     public ResponseEntity<Integer> numeroSeriesGrupamento(@PathVariable Long id, @PathVariable GrupamentosMusculares grupamentosMusculares){
         Integer obj = sessaoTreinoService.numeroSeriesGrupamento(id, grupamentosMusculares);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @PostMapping
+    public ResponseEntity<SessaoTreino> insert(@RequestBody SessaoTreino sessaoTreino){
+        SessaoTreino obj = sessaoTreinoService.insert(sessaoTreino);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
 
 }

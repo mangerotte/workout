@@ -1,8 +1,7 @@
 package com.example.luizmangerotte.workout.services;
 
-import com.example.luizmangerotte.workout.entities.Avaliacao;
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.Exercicio;
-import com.example.luizmangerotte.workout.repositories.AvaliacaoRepository;
 import com.example.luizmangerotte.workout.repositories.ExercicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +22,8 @@ public class ExercicioService {
     public Exercicio findById(Long id) {
         Optional<Exercicio> obj = exercicioRepository.findById(id);
         return obj.orElseThrow(() -> new RuntimeException());
+    }
+    public Exercicio insert(Exercicio exercicio){
+        return exercicioRepository.save(exercicio);
     }
 }

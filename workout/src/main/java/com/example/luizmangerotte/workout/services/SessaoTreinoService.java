@@ -1,5 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.Microciclo;
 import com.example.luizmangerotte.workout.entities.SessaoTreino;
 import com.example.luizmangerotte.workout.entities.enums.GrupamentosMusculares;
@@ -29,5 +30,9 @@ public class SessaoTreinoService {
 
     public Integer numeroSeriesGrupamento(Long id, GrupamentosMusculares grupamentosMusculares){
         return sessaoTreinoRepository.findById(id).get().getNumeroSeriesTotais(grupamentosMusculares);
+    }
+
+    public SessaoTreino insert(SessaoTreino sessaoTreino){
+        return sessaoTreinoRepository.save(sessaoTreino);
     }
 }

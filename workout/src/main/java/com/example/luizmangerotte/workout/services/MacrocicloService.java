@@ -1,5 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.Macrociclo;
 import com.example.luizmangerotte.workout.repositories.MacrocicloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class MacrocicloService {
     public Macrociclo findById(Long id) {
         Optional<Macrociclo> obj = macrocicloRepository.findById(id);
         return obj.orElseThrow(() -> new RuntimeException());
+    }
+
+    public Macrociclo insert(Macrociclo macrociclo){
+        return macrocicloRepository.save(macrociclo);
     }
 }

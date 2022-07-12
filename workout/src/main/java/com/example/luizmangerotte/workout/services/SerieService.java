@@ -1,5 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.Serie;
 import com.example.luizmangerotte.workout.entities.SessaoTreino;
 import com.example.luizmangerotte.workout.repositories.SerieRepository;
@@ -23,5 +24,9 @@ public class SerieService {
     public Serie findById(Long id) {
         Optional<Serie> obj = serieRepository.findById(id);
         return obj.orElseThrow(() -> new RuntimeException());
+    }
+
+    public Serie insert(Serie serie){
+        return serieRepository.save(serie);
     }
 }

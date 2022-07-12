@@ -1,5 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.Mesociclos;
 import com.example.luizmangerotte.workout.entities.Microciclo;
 import com.example.luizmangerotte.workout.repositories.MesocicloRepository;
@@ -23,5 +24,9 @@ public class MicrocicloService {
     public Microciclo findById(Long id) {
         Optional<Microciclo> obj = microcicloRepository.findById(id);
         return obj.orElseThrow(() -> new RuntimeException());
+    }
+
+    public Microciclo insert(Microciclo microciclo){
+        return microcicloRepository.save(microciclo);
     }
 }

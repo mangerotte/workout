@@ -1,15 +1,12 @@
 package com.example.luizmangerotte.workout.resources;
 import com.example.luizmangerotte.workout.entities.ExercicioSessaoTreino;
-import com.example.luizmangerotte.workout.entities.SessaoTreino;
 import com.example.luizmangerotte.workout.services.ExercicioSessaoTreinoService;
-import com.example.luizmangerotte.workout.services.SessaoTreinoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,18 +14,25 @@ import java.util.List;
 public class ExercicioSessaoTreinoResource {
 
     @Autowired
-    ExercicioSessaoTreinoService exercicioSessaoTreino;
+    ExercicioSessaoTreinoService exercicioSessaoTreinoService;
 
     @GetMapping
     public ResponseEntity<List<ExercicioSessaoTreino>> findAll(){
-        List<ExercicioSessaoTreino> listSessaoTreino = exercicioSessaoTreino.findAll();
+        List<ExercicioSessaoTreino> listSessaoTreino = exercicioSessaoTreinoService.findAll();
         return ResponseEntity.ok().body(listSessaoTreino);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<ExercicioSessaoTreino> findById(@PathVariable Long id) {
-        ExercicioSessaoTreino obj = exercicioSessaoTreino.findById(id);
+        ExercicioSessaoTreino obj = exercicioSessaoTreinoService.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @PostMapping
+    public ResponseEntity<ExercicioSessaoTreino> insert(@RequestBody ExercicioSessaoTreino exercicioSessaoTreino){
+        ExercicioSessaoTreino obj = exercicioSessaoTreinoService.insert(exercicioSessaoTreino);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
 
 }

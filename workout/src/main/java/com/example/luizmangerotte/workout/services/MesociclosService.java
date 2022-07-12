@@ -1,5 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 
+import com.example.luizmangerotte.workout.entities.Aluno;
 import com.example.luizmangerotte.workout.entities.Avaliacao;
 import com.example.luizmangerotte.workout.entities.Mesociclos;
 import com.example.luizmangerotte.workout.repositories.AvaliacaoRepository;
@@ -23,5 +24,9 @@ public class MesociclosService {
     public Mesociclos findById(Long id) {
         Optional<Mesociclos> obj = mesocicloRepository.findById(id);
         return obj.orElseThrow(() -> new RuntimeException());
+    }
+
+    public Mesociclos insert(Mesociclos mesociclos){
+        return mesocicloRepository.save(mesociclos);
     }
 }

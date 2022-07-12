@@ -1,7 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 
 import com.example.luizmangerotte.workout.entities.Aluno;
-import com.example.luizmangerotte.workout.entities.Macrociclo;
 import com.example.luizmangerotte.workout.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +31,10 @@ public class AlunoService {
     public Integer numberAlunosActive() {
         List<Aluno> listAtivos = alunoRepository.findAll().stream().filter(x -> x.isStatus()).collect(Collectors.toList());
         return listAtivos.size();
+    }
+
+    public Aluno insert(Aluno aluno){
+        return alunoRepository.save(aluno);
     }
 
 }

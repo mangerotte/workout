@@ -95,8 +95,8 @@ public class Macrociclo {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Macrociclo)) return false;
-        Macrociclo that = (Macrociclo) o;
+        if (!(o instanceof Aluno)) return false;
+        Aluno that = (Aluno) o;
         return Objects.equals(getId(), that.getId());
     }
 
