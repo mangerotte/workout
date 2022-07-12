@@ -20,6 +20,7 @@ public class Exercicio {
     private String videoUrl;
 
     @OneToMany(mappedBy = "exercicio")
+    @JsonIgnore
     private List<ExercicioSessaoTreino> exercicioSessaoTreino = new ArrayList<>();
 
     public Exercicio() {

@@ -1,5 +1,6 @@
 package com.example.luizmangerotte.workout.resources;
 import com.example.luizmangerotte.workout.entities.SessaoTreino;
+import com.example.luizmangerotte.workout.entities.enums.GrupamentosMusculares;
 import com.example.luizmangerotte.workout.services.SessaoTreinoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,12 @@ public class SessaoTreinoResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<SessaoTreino> findById(@PathVariable Long id) {
         SessaoTreino obj = sessaoTreinoService.findById(id);
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping(value = "/{id}/{grupamentosMusculares}")
+    public ResponseEntity<Integer> numeroSeriesGrupamento(@PathVariable Long id, @PathVariable GrupamentosMusculares grupamentosMusculares){
+        Integer obj = sessaoTreinoService.numeroSeriesGrupamento(id, grupamentosMusculares);
         return ResponseEntity.ok().body(obj);
     }
 

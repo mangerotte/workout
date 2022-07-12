@@ -18,12 +18,17 @@ public class Serie {
 
     @ManyToOne
     @JoinColumn(name = "id_exercicio_sessao")
+    @JsonIgnore
     private ExercicioSessaoTreino exercicioSessaoTreino;
 
-    public Serie(Long id, Double carga, Integer repeticao) {
+    public Serie() {
+    }
+
+    public Serie(Long id, Double carga, Integer repeticao, ExercicioSessaoTreino exercicioSessaoTreino) {
         this.id = id;
         this.carga = carga;
         this.repeticao = repeticao;
+        this.exercicioSessaoTreino = exercicioSessaoTreino;
     }
 
     public Long getId() {
@@ -48,6 +53,10 @@ public class Serie {
 
     public void setRepeticao(Integer repeticao) {
         this.repeticao = repeticao;
+    }
+
+    public Double getVolumeCargaSerie(){
+        return repeticao * carga;
     }
 
     @Override

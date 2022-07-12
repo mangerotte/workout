@@ -1,6 +1,7 @@
 package com.example.luizmangerotte.workout.entities;
 
 
+import com.example.luizmangerotte.workout.entities.enums.GrupamentosMusculares;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -78,9 +79,27 @@ public class SessaoTreino {
         this.intensidade = intensidade;
     }
 
-    @JsonIgnore
+
     public List<ExercicioSessaoTreino> getExeSessaoTreinos() {
         return exeSessaoTreinos;
+    }
+
+    public Double getVolumeCargaSessaoTreino(){
+        Double sum = 0.0;
+        for (ExercicioSessaoTreino volume : exeSessaoTreinos){
+            sum += volume.getVolumeCargaExercicio();
+        }
+        return sum;
+    }
+
+    public Integer getNumeroSeriesTotais(GrupamentosMusculares grupamentoMuscular){
+        Integer sum = 0;
+        for (ExercicioSessaoTreino exercicio : exeSessaoTreinos){
+            if (exercicio.getExercicio().getGrupamentoMuscular() == grupamentoMuscular){
+                sum += exercicio.getNumeroSeries();
+            }
+        }
+        return sum;
     }
 
     @Override

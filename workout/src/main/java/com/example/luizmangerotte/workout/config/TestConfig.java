@@ -35,6 +35,8 @@ public class TestConfig implements CommandLineRunner {
     SessaoTreinoRepository sessaoTreinoRepository;
     @Autowired
     ExercicioSessaoTreinoRepository exeSessaoTreinoRepository;
+    @Autowired
+    SerieRepository serieRepository;
 
 
     @Override
@@ -99,5 +101,18 @@ public class TestConfig implements CommandLineRunner {
         ExercicioSessaoTreino exs3 = new ExercicioSessaoTreino(null, "6 a 8", 60.0, "Lenta", 3, ex3, s1);
 
         exeSessaoTreinoRepository.saveAll(Arrays.asList(exs1, exs2, exs3));
+
+        Serie serie1 = new Serie(null, 50.0, 10, exs1);
+        Serie serie2 = new Serie(null, 48.0, 12, exs1);
+        Serie serie3 = new Serie(null, 47.0, 15, exs1);
+        Serie serie4 = new Serie(null, 47.0, 15, exs1);
+        Serie serie5 = new Serie(null, 33.0,  20, exs2);
+        Serie serie6 = new Serie(null, 44.0, 12, exs2);
+        Serie serie7 = new Serie(null, 50.0, 8, exs2);
+        Serie serie8 = new Serie(null, 20.0, 8, exs3);
+        Serie serie9 = new Serie(null, 20.0, 8, exs3);
+        Serie serie10 = new Serie(null, 20.0, 8, exs3);
+
+        serieRepository.saveAll(Arrays.asList(serie1, serie2, serie3, serie4, serie5, serie6, serie7, serie8, serie9, serie10));
     }
 }

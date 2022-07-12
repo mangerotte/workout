@@ -1,5 +1,7 @@
 package com.example.luizmangerotte.workout.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class ExercicioSessaoTreino {
 
     @ManyToOne
     @JoinColumn(name = "id_sessa_treino")
+    @JsonIgnore
     private SessaoTreino sessaoTreino;
 
     @OneToMany(mappedBy = "exercicioSessaoTreino")
@@ -94,5 +97,30 @@ public class ExercicioSessaoTreino {
 
     public void setSessaoTreino(SessaoTreino sessaoTreino) {
         this.sessaoTreino = sessaoTreino;
+    }
+
+    public List<Serie> getSeries() {
+        return series;
+    }
+
+    public Double getVolumeCargaExercicio(){
+       Double sum = 0.0;
+       for (Serie volume : series){
+           sum += volume.getVolumeCargaSerie();
+       }
+       return sum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExercicioSessaoTreino)) return false;
+        ExercicioSessaoTreino that = (ExercicioSessaoTreino) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }
