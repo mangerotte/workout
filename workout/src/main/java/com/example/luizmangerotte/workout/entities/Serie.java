@@ -16,6 +16,10 @@ public class Serie {
     private Double carga;
     private Integer repeticao;
 
+    @ManyToOne
+    @JoinColumn(name = "id_exercicio_sessao")
+    private ExercicioSessaoTreino exercicioSessaoTreino;
+
     public Serie(Long id, Double carga, Integer repeticao) {
         this.id = id;
         this.carga = carga;

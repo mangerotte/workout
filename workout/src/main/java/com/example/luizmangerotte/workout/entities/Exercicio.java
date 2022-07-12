@@ -19,6 +19,9 @@ public class Exercicio {
 
     private String videoUrl;
 
+    @OneToMany(mappedBy = "exercicio")
+    private List<ExercicioSessaoTreino> exercicioSessaoTreino = new ArrayList<>();
+
     public Exercicio() {
     }
 

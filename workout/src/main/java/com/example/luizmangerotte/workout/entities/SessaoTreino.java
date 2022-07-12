@@ -23,8 +23,9 @@ public class SessaoTreino {
     @JsonIgnore
     private Microciclo microciclo;
 
-    @OneToMany(mappedBy = "id.exercicio")
+    @OneToMany(mappedBy = "sessaoTreino")
     List<ExercicioSessaoTreino> exeSessaoTreinos = new ArrayList<>();
+
 
     public SessaoTreino() {
     }

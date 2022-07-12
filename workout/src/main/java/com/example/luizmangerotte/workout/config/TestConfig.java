@@ -94,9 +94,9 @@ public class TestConfig implements CommandLineRunner {
 
         sessaoTreinoRepository.saveAll(Arrays.asList(s1, s2,s3, s4));
 
-        ExercicioSessaoTreino exs1 = new ExercicioSessaoTreino(ex1, s1, "12 a 15", 60.0, "Moderada", 4);
-        ExercicioSessaoTreino exs2 = new ExercicioSessaoTreino(ex2, s1, "12 a 15", 60.0, "Moderada", 4);
-        ExercicioSessaoTreino exs3 = new ExercicioSessaoTreino(ex3, s1, "6 a 8", 60.0, "Moderada", 4);
+        ExercicioSessaoTreino exs1 = new ExercicioSessaoTreino(null, "12 a 15", 60.0, "Moderada", 4, ex1, s1);
+        ExercicioSessaoTreino exs2 = new ExercicioSessaoTreino(null, "8 a 10", 60.0, "Moderada", 3, ex2, s1);
+        ExercicioSessaoTreino exs3 = new ExercicioSessaoTreino(null, "6 a 8", 60.0, "Lenta", 3, ex3, s1);
 
         exeSessaoTreinoRepository.saveAll(Arrays.asList(exs1, exs2, exs3));
     }

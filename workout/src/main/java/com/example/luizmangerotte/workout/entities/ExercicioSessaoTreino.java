@@ -1,48 +1,51 @@
 package com.example.luizmangerotte.workout.entities;
 
-import com.example.luizmangerotte.workout.entities.pk.ExercicioTreinoPK;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class ExercicioSessaoTreino {
 
-    @EmbeddedId
-    private ExercicioTreinoPK id = new ExercicioTreinoPK();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String zonaRep;
     private Double descanso;
     private String cadencia;
     private Integer numeroSeries;
 
+    @ManyToOne
+    @JoinColumn(name = "id_exercicio")
+    private Exercicio exercicio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_sessa_treino")
+    private SessaoTreino sessaoTreino;
+
+    @OneToMany(mappedBy = "exercicioSessaoTreino")
+    private List<Serie> series = new ArrayList<>();
+
     public ExercicioSessaoTreino() {
     }
 
-    public ExercicioSessaoTreino(Exercicio exercicio, SessaoTreino sessaoTreino, String zonaRep, Double descanso, String cadencia, Integer numeroSeries) {
-        id.setExercicio(exercicio);
-        id.setSessaoTreino(sessaoTreino);
+    public ExercicioSessaoTreino(Long id, String zonaRep, Double descanso, String cadencia, Integer numeroSeries, Exercicio exercicio, SessaoTreino sessaoTreino) {
+        this.id = id;
         this.zonaRep = zonaRep;
         this.descanso = descanso;
         this.cadencia = cadencia;
         this.numeroSeries = numeroSeries;
+        this.exercicio = exercicio;
+        this.sessaoTreino = sessaoTreino;
     }
 
-
-    public Exercicio getExercicio() {
-        return id.getExercicio();
+    public Long getId() {
+        return id;
     }
 
-    public void setExercicio(Exercicio exercicio) {
-        id.setExercicio(exercicio);
-    }
-
-    public SessaoTreino getSessaoTreinoo() {
-        return id.getSessaoTreino();
-    }
-
-    public void setSessaoTreino(SessaoTreino sessaoTreino) {
-        id.setSessaoTreino(sessaoTreino);
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getZonaRep() {
@@ -77,16 +80,19 @@ public class ExercicioSessaoTreino {
         this.numeroSeries = numeroSeries;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ExercicioSessaoTreino)) return false;
-        ExercicioSessaoTreino that = (ExercicioSessaoTreino) o;
-        return Objects.equals(id, that.id);
+    public Exercicio getExercicio() {
+        return exercicio;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setExercicio(Exercicio exercicio) {
+        this.exercicio = exercicio;
+    }
+
+    public SessaoTreino getSessaoTreino() {
+        return sessaoTreino;
+    }
+
+    public void setSessaoTreino(SessaoTreino sessaoTreino) {
+        this.sessaoTreino = sessaoTreino;
     }
 }
