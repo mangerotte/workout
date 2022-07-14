@@ -1,7 +1,7 @@
 package com.example.luizmangerotte.workout.services;
 
 
-import com.example.luizmangerotte.workout.entities.Microcycle;
+import com.example.luizmangerotte.workout.model.Microcycle;
 import com.example.luizmangerotte.workout.repositories.MicrocycleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

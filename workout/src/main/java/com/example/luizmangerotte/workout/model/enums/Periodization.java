@@ -1,4 +1,4 @@
-package com.example.luizmangerotte.workout.entities.enums;
+package com.example.luizmangerotte.workout.model.enums;
 
 public enum Periodization {
 

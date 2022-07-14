@@ -1,10 +1,7 @@
 package com.example.luizmangerotte.workout.config;
 
-import com.example.luizmangerotte.workout.entities.*;
-import com.example.luizmangerotte.workout.entities.enums.PhysicalSkills;
-import com.example.luizmangerotte.workout.entities.enums.MuscleGroup;
-import com.example.luizmangerotte.workout.entities.enums.Periodization;
-import com.example.luizmangerotte.workout.entities.enums.TypeMicrocycle;
+import com.example.luizmangerotte.workout.model.*;
+import com.example.luizmangerotte.workout.model.enums.*;
 import com.example.luizmangerotte.workout.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -42,10 +39,10 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Client a1 = new Client(null, "Marcos Aguiar", LocalDate.of(2022,6,20),true);
-        Client a2 = new Client(null, "Ana Maria", LocalDate.of(2022,1,21),false);
-        Client a3 = new Client(null, "Fernanda Aguiar", LocalDate.of(2021,5,22),true);
-        Client a4 = new Client(null, "Cecilia Mangerotte", LocalDate.of(2022,1,1),false);
+        Client a1 = new Client(null, "Marcos Aguiar", LocalDate.of(2022,6,20),true, Gender.MALE, "marcos@gmail.com", "123456");
+        Client a2 = new Client(null, "Ana Maria", LocalDate.of(2022,1,21),false, Gender.FEMALE, "ana@gmail.com", "123456");
+        Client a3 = new Client(null, "Fernanda Aguiar", LocalDate.of(2021,5,22),true, Gender.FEMALE, "fernanda@gmail.com", "123456");
+        Client a4 = new Client(null, "Cecilia Mangerotte", LocalDate.of(2022,1,1),false, Gender.FEMALE, "cecilia@gmail.com", "123456");
 
         clientRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 

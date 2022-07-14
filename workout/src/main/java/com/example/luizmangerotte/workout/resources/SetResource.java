@@ -1,5 +1,5 @@
 package com.example.luizmangerotte.workout.resources;
-import com.example.luizmangerotte.workout.entities.SetExercise;
+import com.example.luizmangerotte.workout.model.SetExercise;
 import com.example.luizmangerotte.workout.services.SetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

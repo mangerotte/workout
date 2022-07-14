@@ -1,6 +1,4 @@
-package com.example.luizmangerotte.workout.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.example.luizmangerotte.workout.model;
 
 import javax.persistence.*;
 import java.util.Objects;

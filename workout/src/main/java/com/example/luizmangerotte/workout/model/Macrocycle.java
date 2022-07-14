@@ -1,6 +1,6 @@
-package com.example.luizmangerotte.workout.entities;
+package com.example.luizmangerotte.workout.model;
 
-import com.example.luizmangerotte.workout.entities.enums.Periodization;
+import com.example.luizmangerotte.workout.model.enums.Periodization;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;

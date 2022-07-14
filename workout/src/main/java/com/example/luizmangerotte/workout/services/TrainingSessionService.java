@@ -1,6 +1,6 @@
 package com.example.luizmangerotte.workout.services;
-import com.example.luizmangerotte.workout.entities.TrainingSession;
-import com.example.luizmangerotte.workout.entities.enums.MuscleGroup;
+import com.example.luizmangerotte.workout.model.TrainingSession;
+import com.example.luizmangerotte.workout.model.enums.MuscleGroup;
 import com.example.luizmangerotte.workout.repositories.TrainingSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

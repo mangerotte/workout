@@ -1,5 +1,5 @@
 package com.example.luizmangerotte.workout.resources;
-import com.example.luizmangerotte.workout.entities.Mesocycle;
+import com.example.luizmangerotte.workout.model.Mesocycle;
 import com.example.luizmangerotte.workout.services.MesocycleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

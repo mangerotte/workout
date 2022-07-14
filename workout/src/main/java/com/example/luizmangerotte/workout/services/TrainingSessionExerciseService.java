@@ -1,5 +1,5 @@
 package com.example.luizmangerotte.workout.services;
-import com.example.luizmangerotte.workout.entities.TrainingSessionExercise;
+import com.example.luizmangerotte.workout.model.TrainingSessionExercise;
 import com.example.luizmangerotte.workout.repositories.TrainingSessionExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

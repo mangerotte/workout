@@ -1,5 +1,5 @@
 package com.example.luizmangerotte.workout.resources;
-import com.example.luizmangerotte.workout.entities.Microcycle;
+import com.example.luizmangerotte.workout.model.Microcycle;
 import com.example.luizmangerotte.workout.services.MicrocycleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

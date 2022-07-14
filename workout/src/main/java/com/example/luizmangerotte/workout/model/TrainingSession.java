@@ -1,7 +1,7 @@
-package com.example.luizmangerotte.workout.entities;
+package com.example.luizmangerotte.workout.model;
 
 
-import com.example.luizmangerotte.workout.entities.enums.MuscleGroup;
+import com.example.luizmangerotte.workout.model.enums.MuscleGroup;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

@@ -1,9 +1,13 @@
 package com.example.luizmangerotte.workout.services;
-import com.example.luizmangerotte.workout.entities.Client;
+import com.example.luizmangerotte.workout.dto.request.ClientDtoRequest;
+import com.example.luizmangerotte.workout.dto.response.ClientDtoReponse;
+import com.example.luizmangerotte.workout.model.Client;
 import com.example.luizmangerotte.workout.repositories.ClientRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,27 +17,39 @@ public class ClientService {
 
     @Autowired
     ClientRepository clientRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public List<Client> findAll() {
-        return clientRepository.findAll();
+    public List<ClientDtoReponse> findAll() {
+        List<ClientDtoReponse> clientDtoReponseList = new ArrayList<>();
+        List<Client> clientList = clientRepository.findAll();
+        clientList.forEach(client -> clientDtoReponseList.add(convertToClientDTO(client)));
+        return clientDtoReponseList;
     }
 
-    public Client findById(Long id) {
-        Optional<Client> obj = clientRepository.findById(id);
+    public ClientDtoReponse findById(Long id) {
+        Optional<Client> client = clientRepository.findById(id);
+        ClientDtoReponse clientDtoReponse = convertToClientDTO(client.get());
+        Optional<ClientDtoReponse> obj = Optional.ofNullable(clientDtoReponse);
         return obj.orElseThrow(() -> new RuntimeException());
     }
 
-    public List<Client> findClientActive() {
-        return clientRepository.findAll().stream().filter(x -> x.isStatus()).collect(Collectors.toList());
+    public List<ClientDtoReponse> findClientActive() {
+        List<ClientDtoReponse> clientDtoReponseList = new ArrayList<>();
+        List<Client> clientList = clientRepository.findAll().stream().filter(x -> x.isStatus()).collect(Collectors.toList());
+        clientList.forEach(client -> clientDtoReponseList.add(convertToClientDTO(client)));
+        return clientDtoReponseList;
     }
 
     public Integer numberClientActive() {
-        List<Client> listAtivos = clientRepository.findAll().stream().filter(x -> x.isStatus()).collect(Collectors.toList());
-        return listAtivos.size();
+        List<ClientDtoReponse> clientDtoReponseList = new ArrayList<>();
+        List<Client> clientList = clientRepository.findAll().stream().filter(x -> x.isStatus()).collect(Collectors.toList());
+        clientList.forEach(client -> clientDtoReponseList.add(convertToClientDTO(client)));
+        return clientList.size();
     }
 
-    public Client insert(Client aluno){
-        return clientRepository.save(aluno);
+    public Client insert(Client client){
+        return clientRepository.save(client);
     }
 
     public void delete(Long id) { clientRepository.deleteById(id);}
@@ -47,5 +63,14 @@ public class ClientService {
         entity.setName(obj.getName());
         entity.setStatus(obj.isStatus());
        entity.setStartDate(obj.getStartDate());
+    }
+    public Client convertToClient(ClientDtoRequest clientDtoRequest){
+        Client client = modelMapper.map(clientDtoRequest, Client.class);
+        return client;
+    }
+
+    public ClientDtoReponse convertToClientDTO(Client client){
+        ClientDtoReponse clientDtoReponse = modelMapper.map(client, ClientDtoReponse.class);
+        return clientDtoReponse;
     }
 }
