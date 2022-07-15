@@ -1,6 +1,6 @@
 package com.example.luizmangerotte.workout.resources;
 import com.example.luizmangerotte.workout.model.Exercise;
-import com.example.luizmangerotte.workout.services.ExerciseService;
+import com.example.luizmangerotte.workout.services.impl.ExerciseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +14,22 @@ import java.util.List;
 public class ExerciseResource {
 
     @Autowired
-    ExerciseService exerciseService;
+    ExerciseServiceImpl exerciseServiceImpl;
 
     @GetMapping
     public ResponseEntity<List<Exercise>> findAll(){
-        List<Exercise> listExercises = exerciseService.findAll();
+        List<Exercise> listExercises = exerciseServiceImpl.findAll();
         return ResponseEntity.ok().body(listExercises);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Exercise> findById(@PathVariable Long id) {
-        Exercise obj = exerciseService.findById(id);
+        Exercise obj = exerciseServiceImpl.findById(id);
         return ResponseEntity.ok().body(obj);}
 
     @PostMapping
     public ResponseEntity<Exercise> insert(@RequestBody Exercise exercise){
-        Exercise obj = exerciseService.insert(exercise);
+        Exercise obj = exerciseServiceImpl.insert(exercise);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }

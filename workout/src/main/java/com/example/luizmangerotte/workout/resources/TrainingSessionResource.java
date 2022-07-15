@@ -1,7 +1,7 @@
 package com.example.luizmangerotte.workout.resources;
 import com.example.luizmangerotte.workout.model.TrainingSession;
 import com.example.luizmangerotte.workout.model.enums.MuscleGroup;
-import com.example.luizmangerotte.workout.services.TrainingSessionService;
+import com.example.luizmangerotte.workout.services.impl.TrainingSessionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,29 +15,29 @@ import java.util.List;
 public class TrainingSessionResource {
 
     @Autowired
-    TrainingSessionService trainingSessionService;
+    TrainingSessionServiceImpl trainingSessionServiceImpl;
 
     @GetMapping
     public ResponseEntity<List<TrainingSession>> findAll(){
-        List<TrainingSession> listTrainingSession = trainingSessionService.findAll();
+        List<TrainingSession> listTrainingSession = trainingSessionServiceImpl.findAll();
         return ResponseEntity.ok().body(listTrainingSession);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<TrainingSession> findById(@PathVariable Long id) {
-        TrainingSession obj = trainingSessionService.findById(id);
+        TrainingSession obj = trainingSessionServiceImpl.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @GetMapping(value = "/{id}/{muscle-group}")
     public ResponseEntity<Integer> getSetGroup(@PathVariable Long id, @PathVariable MuscleGroup muscleGroup){
-        Integer obj = trainingSessionService.getSetGroup(id, muscleGroup);
+        Integer obj = trainingSessionServiceImpl.getSetGroup(id, muscleGroup);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
     public ResponseEntity<TrainingSession> insert(@RequestBody TrainingSession trainingSession){
-        TrainingSession obj = trainingSessionService.insert(trainingSession);
+        TrainingSession obj = trainingSessionServiceImpl.insert(trainingSession);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }

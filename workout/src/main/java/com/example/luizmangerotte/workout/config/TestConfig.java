@@ -46,9 +46,9 @@ public class TestConfig implements CommandLineRunner {
 
         clientRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 
-        PhysicalExamination av1 = new PhysicalExamination(null, a1, Instant.now(), 78.8, 1.72, 15.3, 66.8);
-        PhysicalExamination av2 = new PhysicalExamination(null, a2, Instant.now(), 88.2, 1.70, 25.3, 55.6);
-        PhysicalExamination av3 = new PhysicalExamination(null, a1, Instant.now(), 89.2, 1.72, 25.3, 55.6);
+        PhysicalExamination av1 = new PhysicalExamination(null, Instant.now(), 78.8, 1.72, 15.3, 66.8, a1);
+        PhysicalExamination av2 = new PhysicalExamination(null, Instant.now(), 88.2, 1.70, 25.3, 55.6, a2);
+        PhysicalExamination av3 = new PhysicalExamination(null, Instant.now(), 89.2, 1.72, 25.3, 55.6, a1);
         SkinFold db = new SkinFold(null, av1, 5.6,7.8,9.9,15.3,11.5,12.3,9.8,14.5,17.5);
         SkinFold db2 = new SkinFold(null, av2, 2.6,9.8,11.9,12.3,10.5,14.3,10.0,12.5, 14.3);
         SkinFold db3 = new SkinFold(null, av3, 2.6,9.8,11.9,12.3,10.5,14.3,10.0,12.5, 5.5);

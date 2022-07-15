@@ -1,6 +1,9 @@
 package com.example.luizmangerotte.workout.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +11,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class TrainingSessionExercise {
 
     @Id
@@ -32,9 +37,6 @@ public class TrainingSessionExercise {
     @OneToMany(mappedBy = "trainingSessionExercise")
     private List<SetExercise> setExerciseList = new ArrayList<>();
 
-    public TrainingSessionExercise() {
-    }
-
     public TrainingSessionExercise(Long id, String zoneRep, Double rest, String cadence, Integer setNumber, Exercise exercise, TrainingSession trainingSession) {
         this.id = id;
         this.zoneRep = zoneRep;
@@ -45,84 +47,9 @@ public class TrainingSessionExercise {
         this.trainingSession = trainingSession;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getZoneRep() {
-        return zoneRep;
-    }
-
-    public void setZoneRep(String zoneRep) {
-        this.zoneRep = zoneRep;
-    }
-
-    public Double getRest() {
-        return rest;
-    }
-
-    public void setRest(Double rest) {
-        this.rest = rest;
-    }
-
-    public String getCadence() {
-        return cadence;
-    }
-
-    public void setCadence(String cadence) {
-        this.cadence = cadence;
-    }
-
-    public Integer getSetNumber() {
-        return setNumber;
-    }
-
-    public void setSetNumber(Integer setNumber) {
-        this.setNumber = setNumber;
-    }
-
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
-    }
-
-    public TrainingSession getTrainingSession() {
-        return trainingSession;
-    }
-
-    public void setTrainingSession(TrainingSession trainingSession) {
-        this.trainingSession = trainingSession;
-    }
-
-    public List<SetExercise> getSetList() {
-        return setExerciseList;
-    }
-
     public Double getVolumeLoadExercise(){
-       Double sum = 0.0;
-       for (SetExercise volume : setExerciseList){
-           sum += volume.getVolumeLoadSet();
-       }
-       return sum;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TrainingSessionExercise)) return false;
-        TrainingSessionExercise that = (TrainingSessionExercise) o;
-        return Objects.equals(getId(), that.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
+       return setExerciseList.stream()
+               .map(SetExercise::getVolumeLoadSet)
+               .reduce(0.0, Double::sum);
     }
 }
