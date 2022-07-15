@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,9 +70,13 @@ public class ClientService {
     }
 
     public Client update(Long id, Client clientRequest){
-        Client clientDb = clientRepository.getReferenceById(id);
-        updateData(clientDb, clientRequest);
-        return clientRepository.save(clientDb);
+        try {
+            Client clientDb = clientRepository.getReferenceById(id);
+            updateData(clientDb, clientRequest);
+            return clientRepository.save(clientDb);
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
     private void updateData(Client clientDb, Client clientRequest) {
         clientDb.setName(clientRequest.getName());
