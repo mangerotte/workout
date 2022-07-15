@@ -1,4 +1,4 @@
-package com.example.luizmangerotte.workout.services.impl;
+package com.example.luizmangerotte.workout.services;
 
 
 import com.example.luizmangerotte.workout.model.Microcycle;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MicrocycleServiceImpl {
+public class MicrocycleService {
 
     @Autowired
     MicrocycleRepository microcycleRepository;

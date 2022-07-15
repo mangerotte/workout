@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class Client extends RepresentationModel<Client> {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

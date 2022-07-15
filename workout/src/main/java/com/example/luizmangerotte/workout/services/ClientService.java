@@ -1,4 +1,4 @@
-package com.example.luizmangerotte.workout.services.impl;
+package com.example.luizmangerotte.workout.services;
 import com.example.luizmangerotte.workout.dto.request.ClientDtoRequest;
 import com.example.luizmangerotte.workout.dto.response.ClientDtoReponse;
 import com.example.luizmangerotte.workout.model.Client;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClientServiceImpl {
+public class ClientService {
 
     @Autowired
     ClientRepository clientRepository;

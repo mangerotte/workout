@@ -1,4 +1,4 @@
-package com.example.luizmangerotte.workout.services.impl;
+package com.example.luizmangerotte.workout.services;
 import com.example.luizmangerotte.workout.model.TrainingSession;
 import com.example.luizmangerotte.workout.model.enums.MuscleGroup;
 import com.example.luizmangerotte.workout.repositories.TrainingSessionRepository;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TrainingSessionServiceImpl {
+public class TrainingSessionService {
 
     @Autowired
     TrainingSessionRepository trainingSessionRepository;

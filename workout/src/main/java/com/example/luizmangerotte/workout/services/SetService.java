@@ -1,4 +1,4 @@
-package com.example.luizmangerotte.workout.services.impl;
+package com.example.luizmangerotte.workout.services;
 import com.example.luizmangerotte.workout.model.SetExercise;
 import com.example.luizmangerotte.workout.repositories.SetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SetServiceImpl {
+public class SetService {
 
     @Autowired
     SetRepository setRepository;
