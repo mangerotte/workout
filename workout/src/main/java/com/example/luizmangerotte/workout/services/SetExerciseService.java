@@ -1,6 +1,6 @@
 package com.example.luizmangerotte.workout.services;
-import com.example.luizmangerotte.workout.model.Mesocycle;
-import com.example.luizmangerotte.workout.repositories.MesocycleRepository;
+import com.example.luizmangerotte.workout.model.SetExercise;
+import com.example.luizmangerotte.workout.repositories.SetRepository;
 import com.example.luizmangerotte.workout.services.exceptions.DataBaseException;
 import com.example.luizmangerotte.workout.services.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -15,24 +15,25 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class MesocycleService {
+public class SetExerciseService {
 
     @Autowired
-    MesocycleRepository mesocycleRepository;
+    SetRepository setRepository;
 
-    public List<Mesocycle> findAll(){
+    public List<SetExercise> findAll() {
         try {
-            log.info("Returning all mesocycle");
-            return mesocycleRepository.findAll();
-        } catch (RuntimeException e){
+            log.info("Returning all set");
+            return setRepository.findAll();
+        } catch (RuntimeException e) {
             log.error("Unexpected error in method 'findAll()'");
             throw new RuntimeException(e.getMessage());
         }
     }
-    public Optional<Mesocycle> findById(Long id) {
+
+    public Optional<SetExercise> findById(Long id) {
         try {
-            log.info("Returning mesocycle id " + id);
-            return Optional.of(mesocycleRepository
+            log.info("Returning set id " + id);
+            return Optional.of(setRepository
                     .findById(id)
                     .get());
         } catch (ResourceNotFoundException e) {
@@ -43,46 +44,48 @@ public class MesocycleService {
             throw new RuntimeException(e.getMessage());
         }
     }
-    public Mesocycle insert (Mesocycle mesocycle) {
+
+    public SetExercise insert(SetExercise set) {
         try {
-            log.info("Mesocycle successfully created");
-            return mesocycleRepository.save(mesocycle);
-        } catch (RuntimeException e){
+            log.info("SetExercise successfully created");
+            return setRepository.save(set);
+        } catch (RuntimeException e) {
             log.error("Unexpected error in method 'insert'");
             throw new RuntimeException(e.getMessage());
         }
     }
+
     public void delete(Long id) {
         try {
-            log.info("Mesocycle successfully deleted with id:" + id);
-            mesocycleRepository.deleteById(id);
+            log.info("SetExercise successfully deleted with id:" + id);
+            setRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-            log.error("Mesocycle not found");
+            log.error("SetExercise not found");
             throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             log.error("Database Violation");
             throw new DataBaseException(e.getMessage());
         }
     }
-    public Mesocycle update(Long id, Mesocycle mesocycleUpdate){
+
+    public SetExercise update(Long id, SetExercise setUpdate) {
         try {
-            log.info("Mesocycle successfully update with id:" + id);
-            Mesocycle mesocycleDb = mesocycleRepository.getReferenceById(id);
-            updateData(mesocycleDb, mesocycleUpdate);
-            return mesocycleRepository.save(mesocycleDb);
-        }catch (EntityNotFoundException e){
-            log.info("Mesocycle not found:");
+            log.info("SetExercise successfully update with id:" + id);
+            SetExercise setDb = setRepository.getReferenceById(id);
+            updateData(setDb, setUpdate);
+            return setRepository.save(setDb);
+        } catch (EntityNotFoundException e) {
+            log.info("SetExercise not found:");
             throw new ResourceNotFoundException(id);
         } catch (RuntimeException e) {
             log.info("Unexpected error in method 'update'");
             throw new RuntimeException(e.getMessage());
         }
     }
-    private void updateData(Mesocycle mesocycleDb, Mesocycle mesocycleUpdate) {
-        mesocycleDb.setStartDate(mesocycleUpdate.getStartDate());
-        mesocycleDb.setEndDate(mesocycleUpdate.getEndDate());
-        mesocycleDb.setMacrocycle(mesocycleUpdate.getMacrocycle());
-        mesocycleDb.setPhysicalSkill(mesocycleUpdate.getPhysicalSkill());
+
+    private void updateData(SetExercise setDb, SetExercise setUpdate) {
+        setDb.setRepetition(setUpdate.getRepetition());
+        setDb.setTrainingSessionExercise(setUpdate.getTrainingSessionExercise());
+        setDb.setWeight(setUpdate.getWeight());
     }
 }
-

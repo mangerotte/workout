@@ -1,0 +1,56 @@
+[workout] 2022-07-15 22:44:34,725-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Starting application
+[workout] 2022-07-15 22:44:35,496-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Starting WorkoutApplication using Java 18.0.1.1 on DESKTOP-QUIJU4Q with PID 3036 (C:\Users\Luiz\Desktop\Java - Udemy\workout\workout\target\classes started by Luiz in C:\Users\Luiz\Desktop\Java - Udemy\workout)
+[workout] 2022-07-15 22:44:35,498-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - The following 1 profile is active: "test"
+[workout] 2022-07-15 22:44:36,531-0300 INFO  (main) org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[workout] 2022-07-15 22:44:36,655-0300 INFO  (main) org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110 ms. Found 9 JPA repository interfaces.
+[workout] 2022-07-15 22:44:37,479-0300 INFO  (main) org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[workout] 2022-07-15 22:44:37,492-0300 INFO  (main) org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[workout] 2022-07-15 22:44:37,493-0300 INFO  (main) org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[workout] 2022-07-15 22:44:37,493-0300 INFO  (main) org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+[workout] 2022-07-15 22:44:37,640-0300 INFO  (main) org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[workout] 2022-07-15 22:44:37,640-0300 INFO  (main) org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2059 ms
+[workout] 2022-07-15 22:44:37,675-0300 INFO  (main) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[workout] 2022-07-15 22:44:37,919-0300 INFO  (main) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[workout] 2022-07-15 22:44:37,931-0300 INFO  (main) org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+[workout] 2022-07-15 22:44:38,158-0300 INFO  (main) org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[workout] 2022-07-15 22:44:38,249-0300 INFO  (main) org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final
+[workout] 2022-07-15 22:44:38,548-0300 INFO  (main) org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[workout] 2022-07-15 22:44:38,716-0300 INFO  (main) org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+[workout] 2022-07-15 22:44:39,660-0300 INFO  (main) org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[workout] 2022-07-15 22:44:39,668-0300 INFO  (main) org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[workout] 2022-07-15 22:44:40,785-0300 INFO  (main) org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[workout] 2022-07-15 22:44:40,809-0300 INFO  (main) org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[workout] 2022-07-15 22:44:40,821-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Started WorkoutApplication in 5.928 seconds (JVM running for 6.689)
+[workout] 2022-07-15 22:44:40,969-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Aplication run
+[workout] 2022-07-15 22:46:17,548-0300 INFO  (SpringApplicationShutdownHook) org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[workout] 2022-07-15 22:46:17,548-0300 INFO  (SpringApplicationShutdownHook) org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+[workout] 2022-07-15 22:46:17,721-0300 INFO  (SpringApplicationShutdownHook) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[workout] 2022-07-15 22:46:17,721-0300 INFO  (SpringApplicationShutdownHook) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[workout] 2022-07-15 22:47:42,129-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Starting application
+[workout] 2022-07-15 22:47:42,725-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Starting WorkoutApplication using Java 18.0.1.1 on DESKTOP-QUIJU4Q with PID 10536 (C:\Users\Luiz\Desktop\Java - Udemy\workout\workout\target\classes started by Luiz in C:\Users\Luiz\Desktop\Java - Udemy\workout)
+[workout] 2022-07-15 22:47:42,725-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - The following 1 profile is active: "test"
+[workout] 2022-07-15 22:47:43,636-0300 INFO  (main) org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[workout] 2022-07-15 22:47:43,761-0300 INFO  (main) org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104 ms. Found 9 JPA repository interfaces.
+[workout] 2022-07-15 22:47:44,541-0300 INFO  (main) org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[workout] 2022-07-15 22:47:44,557-0300 INFO  (main) org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[workout] 2022-07-15 22:47:44,557-0300 INFO  (main) org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[workout] 2022-07-15 22:47:44,557-0300 INFO  (main) org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+[workout] 2022-07-15 22:47:44,666-0300 INFO  (main) org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[workout] 2022-07-15 22:47:44,666-0300 INFO  (main) org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1856 ms
+[workout] 2022-07-15 22:47:44,697-0300 INFO  (main) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[workout] 2022-07-15 22:47:44,916-0300 INFO  (main) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[workout] 2022-07-15 22:47:44,916-0300 INFO  (main) org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+[workout] 2022-07-15 22:47:45,119-0300 INFO  (main) org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[workout] 2022-07-15 22:47:45,198-0300 INFO  (main) org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final
+[workout] 2022-07-15 22:47:45,432-0300 INFO  (main) org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[workout] 2022-07-15 22:47:45,588-0300 INFO  (main) org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+[workout] 2022-07-15 22:47:46,502-0300 INFO  (main) org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[workout] 2022-07-15 22:47:46,502-0300 INFO  (main) org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[workout] 2022-07-15 22:47:47,580-0300 INFO  (main) org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[workout] 2022-07-15 22:47:47,596-0300 INFO  (main) org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[workout] 2022-07-15 22:47:47,612-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Started WorkoutApplication in 5.354 seconds (JVM running for 6.028)
+[workout] 2022-07-15 22:47:47,784-0300 INFO  (main) com.example.luizmangerotte.workout.WorkoutApplication - Aplication run
+[workout] 2022-07-15 22:47:58,938-0300 INFO  (SpringApplicationShutdownHook) org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[workout] 2022-07-15 22:47:58,938-0300 INFO  (SpringApplicationShutdownHook) org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+[workout] 2022-07-15 22:47:59,096-0300 INFO  (SpringApplicationShutdownHook) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[workout] 2022-07-15 22:47:59,096-0300 INFO  (SpringApplicationShutdownHook) com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

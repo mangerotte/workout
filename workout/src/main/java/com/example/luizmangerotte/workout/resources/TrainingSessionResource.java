@@ -1,14 +1,15 @@
 package com.example.luizmangerotte.workout.resources;
+
 import com.example.luizmangerotte.workout.model.TrainingSession;
 import com.example.luizmangerotte.workout.model.enums.MuscleGroup;
 import com.example.luizmangerotte.workout.services.TrainingSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/training-session")
@@ -19,27 +20,37 @@ public class TrainingSessionResource {
 
     @GetMapping
     public ResponseEntity<List<TrainingSession>> findAll(){
-        List<TrainingSession> listTrainingSession = trainingSessionService.findAll();
-        return ResponseEntity.ok().body(listTrainingSession);
+        return ResponseEntity.ok().body(trainingSessionService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TrainingSession> findById(@PathVariable Long id) {
-        TrainingSession obj = trainingSessionService.findById(id);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Optional<TrainingSession>> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(trainingSessionService.findById(id));
     }
 
     @GetMapping(value = "/{id}/{muscle-group}")
-    public ResponseEntity<Integer> getSetGroup(@PathVariable Long id, @PathVariable MuscleGroup muscleGroup){
-        Integer obj = trainingSessionService.getSetGroup(id, muscleGroup);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Optional<Integer>> getSetGroup(@PathVariable Long id, @PathVariable MuscleGroup muscleGroup){
+        return ResponseEntity.ok().body(trainingSessionService.getSetGroup(id, muscleGroup));
+    }
+
+    public ResponseEntity<Optional<Double>> getVolumeLoad(Long id){
+        return ResponseEntity.ok().body(trainingSessionService.getVolumeLoad(id));
     }
 
     @PostMapping
     public ResponseEntity<TrainingSession> insert(@RequestBody TrainingSession trainingSession){
-        TrainingSession obj = trainingSessionService.insert(trainingSession);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        return new ResponseEntity<>(trainingSessionService.insert(trainingSession), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        trainingSessionService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TrainingSession> update(@PathVariable Long id, @RequestBody TrainingSession trainingSession){
+        return ResponseEntity.ok().body(trainingSession = trainingSessionService.update(id, trainingSession));
     }
 
 }
