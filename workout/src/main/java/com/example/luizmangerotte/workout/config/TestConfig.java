@@ -34,15 +34,19 @@ public class TestConfig implements CommandLineRunner {
     TrainingSessionExerciseRepository exeSessaoTreinoRepository;
     @Autowired
     SetRepository setRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
 
     @Override
     public void run(String... args) throws Exception {
 
-        Client a1 = new Client(null, "Marcos Aguiar", LocalDate.of(2022,6,20),true, Gender.MALE, "marcos@gmail.com", "123456");
-        Client a2 = new Client(null, "Ana Maria", LocalDate.of(2022,1,21),false, Gender.FEMALE, "ana@gmail.com", "123456");
-        Client a3 = new Client(null, "Fernanda Aguiar", LocalDate.of(2021,5,22),true, Gender.FEMALE, "fernanda@gmail.com", "123456");
-        Client a4 = new Client(null, "Cecilia Mangerotte", LocalDate.of(2022,1,1),false, Gender.FEMALE, "cecilia@gmail.com", "123456");
+        Client a1 = new Client(null, "Marcos Aguiar", LocalDate.of(2022,6,20),true, Gender.MALE, "marcos@gmail.com");
+        Client a2 = new Client(null, "Ana Maria", LocalDate.of(2022,1,21),false, Gender.FEMALE, "ana@gmail.com");
+        Client a3 = new Client(null, "Fernanda Aguiar", LocalDate.of(2021,5,22),true, Gender.FEMALE, "fernanda@gmail.com");
+        Client a4 = new Client(null, "Cecilia Mangerotte", LocalDate.of(2022,1,1),false, Gender.FEMALE, "cecilia@gmail.com");
 
         clientRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 
@@ -79,7 +83,7 @@ public class TestConfig implements CommandLineRunner {
 
         Microcycle micro1 = new Microcycle(null, TypeMicrocycle.INTRODUCTORY, LocalDate.of(2022,7,10), LocalDate.of(2022,7,17), meso3);
         Microcycle micro2 = new Microcycle(null, TypeMicrocycle.SHOCK, LocalDate.of(2022,7,18), LocalDate.of(2022,7,25), meso3);
-        Microcycle micro3 = new Microcycle(null, TypeMicrocycle.RESTORATIVE, LocalDate.of(2022,7,26), LocalDate.of(2022,8,02), meso3);
+        Microcycle micro3 = new Microcycle(null, TypeMicrocycle.RESTORATIVE, LocalDate.of(2022,7,26), LocalDate.of(2022,8,2), meso3);
 
         Microcycle micro4 = new Microcycle(null, TypeMicrocycle.ACTIVATION, LocalDate.of(2022,5,12), LocalDate.of(2022,5,19), meso1);
         Microcycle micro5 = new Microcycle(null, TypeMicrocycle.STANDARD, LocalDate.of(2022,5,19), LocalDate.of(2022,5,26), meso1);
@@ -112,6 +116,19 @@ public class TestConfig implements CommandLineRunner {
 
         setRepository.saveAll(Arrays.asList(setExercise1, setExercise2, setExercise3, setExercise4, setExercise5, setExercise6, setExercise7, setExercise8, setExercise9, setExercise10));
 
+        Role admin = new Role(null,RoleName.ROLE_ADMIN);
+        Role user = new Role(null,RoleName.ROLE_USER);
+
+        roleRepository.saveAll(Arrays.asList(admin, user));
+
+
+        UserModel userModel1 = new UserModel(null, "mangerotte", "$2a$10$.Mv7UTHzuKjYUr48p0yn.u4IiumaDlq1Ro3iwg4Z2oRM77HD6UJCS");
+        UserModel userModel2 = new UserModel(null, "lpmangerotte", "$2a$10$.Mv7UTHzuKjYUr48p0yn.u4IiumaDlq1Ro3iwg4Z2oRM77HD6UJCS");
+        userRepository.saveAll(Arrays.asList(userModel1, userModel2));
+
+        userModel1.getRoleList().add(admin);
+        userModel2.getRoleList().add(user);
+        userRepository.saveAll(Arrays.asList(userModel1, userModel2));
 
     }
 }

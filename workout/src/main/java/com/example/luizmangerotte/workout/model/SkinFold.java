@@ -1,11 +1,11 @@
 package com.example.luizmangerotte.workout.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Data
@@ -18,6 +18,7 @@ public class SkinFold {
     private Long id;
     @OneToOne
     @MapsId
+    @JsonIgnore
     private PhysicalExamination physicalExamination;
 
     private Double triceps;

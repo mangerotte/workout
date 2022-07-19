@@ -2,6 +2,7 @@ package com.example.luizmangerotte.workout.model;
 
 import com.example.luizmangerotte.workout.model.enums.Periodization;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class Macrocycle {
         private Client client;
 
         @OneToMany(mappedBy = "macrocycle")
+        @JsonIgnore
         List<Mesocycle> mesocycleList = new ArrayList<>();
 
         public Macrocycle(Long id, String goal, Periodization typePeriodization, LocalDate startDate, LocalDate endDate, Client client) {

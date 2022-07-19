@@ -1,6 +1,6 @@
 package com.example.luizmangerotte.workout.services;
 import com.example.luizmangerotte.workout.dto.request.ClientDtoRequest;
-import com.example.luizmangerotte.workout.dto.response.ClientDtoReponse;
+import com.example.luizmangerotte.workout.dto.response.ClientDtoResponse;
 import com.example.luizmangerotte.workout.model.Client;
 import com.example.luizmangerotte.workout.repositories.ClientRepository;
 import com.example.luizmangerotte.workout.services.exceptions.DataBaseException;
@@ -25,7 +25,7 @@ public class ClientService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<ClientDtoReponse> findAll() {
+    public List<ClientDtoResponse> findAll() {
         try {
             log.info("Returning all clients");
             return clientRepository.findAll()
@@ -38,7 +38,7 @@ public class ClientService {
         }
 }
 
-    public Optional<ClientDtoReponse> findById(Long id) {
+    public Optional<ClientDtoResponse> findById(Long id) {
         try {
             log.info("Returning client id " + id);
             return Optional.of(clientRepository
@@ -54,7 +54,7 @@ public class ClientService {
         }
     }
 
-    public List<ClientDtoReponse> findClientActive() {
+    public List<ClientDtoResponse> findClientActive() {
         try {
             log.info("Returning clients active");
             return clientRepository
@@ -90,8 +90,7 @@ public class ClientService {
     public Client insert(Client client){
        try {
            log.info("Client successfully created");
-           return clientRepository.save(convertDtoRequestToClient
-                   (convertToClientDtoRequest(client)));
+           return clientRepository.save(convertToClient(convertToClientDtoRequest(client)));
        } catch (RuntimeException e){
            log.error("Unexpected error in method 'insert'");
            throw new RuntimeException(e.getMessage());
@@ -135,7 +134,7 @@ public class ClientService {
         clientDb.setEmail(clientRequest.getEmail());
         clientDb.setGender(clientRequest.getGender());
     }
-    public Client convertDtoRequestToClient(ClientDtoRequest clientDtoRequest){
+    public Client convertToClient(ClientDtoRequest clientDtoRequest){
         try {
             log.info("ClientDtoRequest converted for client successfully");
             return modelMapper.map(clientDtoRequest, Client.class);
@@ -153,10 +152,10 @@ public class ClientService {
            throw new RuntimeException(e.getMessage());
        }
     }
-    public ClientDtoReponse convertToClientDtoResponse(Client client){
+    public ClientDtoResponse convertToClientDtoResponse(Client client){
         try {
             log.info("Client converted for ClientDtoResponse successfully");
-            return modelMapper.map(client, ClientDtoReponse.class);
+            return modelMapper.map(client, ClientDtoResponse.class);
         } catch (RuntimeException e){
             log.error("Unexpected error in method 'convertToClientDtoResponse'");
             throw new RuntimeException(e.getMessage());

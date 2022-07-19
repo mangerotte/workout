@@ -2,9 +2,10 @@ package com.example.luizmangerotte.workout.model;
 import com.example.luizmangerotte.workout.model.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.hateoas.RepresentationModel;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ public class Client {
     private Gender gender;
 
     private String email;
-    private String password;
 
 
     @OneToMany(mappedBy = "client")
@@ -42,14 +42,13 @@ public class Client {
     @JsonIgnore
     private List<Macrocycle> macrocyclesList = new ArrayList<>();
 
-    public Client(Long id, String name, LocalDate startDate, boolean status, Gender gender, String email, String password) {
+    public Client(Long id, String name, LocalDate startDate, boolean status, Gender gender, String email) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.status = status;
         this.gender = gender;
         this.email = email;
-        this.password = password;
     }
 
 }

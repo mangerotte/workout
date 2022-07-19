@@ -2,6 +2,7 @@ package com.example.luizmangerotte.workout.model;
 
 import com.example.luizmangerotte.workout.model.enums.PhysicalSkills;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,7 @@ public class Mesocycle {
     private Macrocycle macrocycle;
 
     @OneToMany(mappedBy = "mesocycle")
+    @JsonIgnore
     private List<Microcycle> microcyclesList = new ArrayList<>();
 
     public Mesocycle(Long id, PhysicalSkills physicalSkill, LocalDate startDate, LocalDate endDate, Macrocycle macrocycle) {
