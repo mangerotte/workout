@@ -54,39 +54,6 @@ public class ClientService {
         }
     }
 
-    public List<ClientDtoResponse> findClientActive() {
-        try {
-            log.info("Returning clients active");
-            return clientRepository
-                    .findAll()
-                    .stream()
-                    .filter(Client::isStatus)
-                    .map(this::convertToClientDtoResponse)
-                    .toList();
-        } catch (ResourceNotFoundException e){
-            log.error("Not found clients active");
-            throw new ResourceNotFoundException(e.getMessage());
-        } catch (RuntimeException e){
-            log.error("Unexpected error in method 'findClientActive()'");
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    public Integer numberClientActive() {
-        try {
-            log.info("Returning number clients active");
-            return clientRepository.findAll().
-                    stream()
-                    .filter(Client::isStatus)
-                    .map(this::convertToClientDtoResponse)
-                    .toList()
-                    .size();
-        } catch (RuntimeException e){
-            log.error("Unexpected error in method 'numberClientActive()'");
-            throw  new RuntimeException(e.getMessage());
-        }
-    }
-
     public Client insert(Client client){
        try {
            log.info("Client successfully created");

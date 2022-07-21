@@ -25,20 +25,6 @@ public class ClientResource {
         return ResponseEntity.ok().body(clientService.findAll());
     }
 
-    @GetMapping
-    @RequestMapping(value="/active")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<ClientDtoResponse>> findActive() {
-        return ResponseEntity.ok().body(clientService.findClientActive());
-    }
-
-    @GetMapping
-    @RequestMapping(value="/number-active")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Integer> numberActive() {
-        return ResponseEntity.ok().body(clientService.numberClientActive());
-    }
-
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasRole('USER', 'ADMIN')")
     public ResponseEntity<Optional<ClientDtoResponse>> findById(@PathVariable Long id) {
