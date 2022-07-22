@@ -1,7 +1,7 @@
 package com.example.luizmangerotte.workout.resources;
 
-import com.example.luizmangerotte.workout.dto.response.ClientDtoResponse;
 import com.example.luizmangerotte.workout.model.Client;
+import com.example.luizmangerotte.workout.model.dto.ClientDto;
 import com.example.luizmangerotte.workout.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,20 +21,20 @@ public class ClientResource {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<ClientDtoResponse>> findAll(){
+    public ResponseEntity<List<ClientDto>> findAll(){
         return ResponseEntity.ok().body(clientService.findAll());
     }
 
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasRole('USER', 'ADMIN')")
-    public ResponseEntity<Optional<ClientDtoResponse>> findById(@PathVariable Long id) {
+    public ResponseEntity<Optional<ClientDto>> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(clientService.findById(id));
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Client> insert(@RequestBody Client client){
-        return new ResponseEntity<>(clientService.insert(client), HttpStatus.CREATED);
+    public ResponseEntity<Client> insert(@RequestBody ClientDto obj){
+        return new ResponseEntity<>(clientService.insert(obj), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/{id}")

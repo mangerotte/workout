@@ -1,7 +1,7 @@
 package com.example.luizmangerotte.workout.services;
-import com.example.luizmangerotte.workout.dto.request.ClientDtoRequest;
-import com.example.luizmangerotte.workout.dto.response.ClientDtoResponse;
+
 import com.example.luizmangerotte.workout.model.Client;
+import com.example.luizmangerotte.workout.model.dto.ClientDto;
 import com.example.luizmangerotte.workout.repositories.ClientRepository;
 import com.example.luizmangerotte.workout.services.exceptions.DataBaseException;
 import com.example.luizmangerotte.workout.services.exceptions.ResourceNotFoundException;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -25,26 +26,23 @@ public class ClientService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<ClientDtoResponse> findAll() {
+    public List<ClientDto> findAll() {
         try {
             log.info("Returning all clients");
             return clientRepository.findAll()
                     .stream()
-                    .map(this::convertToClientDtoResponse)
-                    .toList();
+                    .map(user-> modelMapper.map(user, ClientDto.class))
+                    .collect(Collectors.toList());
         } catch (RuntimeException e){
             log.error("Unexpected error in method 'findAll()'");
             throw new RuntimeException(e.getMessage());
         }
-}
+    }
 
-    public Optional<ClientDtoResponse> findById(Long id) {
+    public Optional<ClientDto> findById(Long id) {
         try {
             log.info("Returning client id " + id);
-            return Optional.of(clientRepository
-                .findById(id)
-                .map(this::convertToClientDtoResponse))
-                .get();
+            return Optional.of(modelMapper.map(clientRepository.findById(id), ClientDto.class));
         }catch (ResourceNotFoundException e){
             log.error("Not found id: " + id);
             throw new ResourceNotFoundException(id);
@@ -54,10 +52,10 @@ public class ClientService {
         }
     }
 
-    public Client insert(Client client){
+    public Client insert(ClientDto client){
        try {
            log.info("Client successfully created");
-           return clientRepository.save(convertToClient(convertToClientDtoRequest(client)));
+           return clientRepository.save(modelMapper.map(client, Client.class));
        } catch (RuntimeException e){
            log.error("Unexpected error in method 'insert'");
            throw new RuntimeException(e.getMessage());
@@ -100,32 +98,5 @@ public class ClientService {
        clientDb.setStartDate(clientRequest.getStartDate());
         clientDb.setEmail(clientRequest.getEmail());
         clientDb.setGender(clientRequest.getGender());
-    }
-    public Client convertToClient(ClientDtoRequest clientDtoRequest){
-        try {
-            log.info("ClientDtoRequest converted for client successfully");
-            return modelMapper.map(clientDtoRequest, Client.class);
-        } catch (RuntimeException e){
-            log.error("Unexpected error in method 'convertDtoRequestToClient'");
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-    public ClientDtoRequest convertToClientDtoRequest(Client client){
-       try {
-           log.info("Client converted for ClientDtoRequest successfully");
-           return modelMapper.map(client, ClientDtoRequest.class);
-       } catch (RuntimeException e) {
-           log.error("Unexpected error in method 'convertToClientDtoRequest'");
-           throw new RuntimeException(e.getMessage());
-       }
-    }
-    public ClientDtoResponse convertToClientDtoResponse(Client client){
-        try {
-            log.info("Client converted for ClientDtoResponse successfully");
-            return modelMapper.map(client, ClientDtoResponse.class);
-        } catch (RuntimeException e){
-            log.error("Unexpected error in method 'convertToClientDtoResponse'");
-            throw new RuntimeException(e.getMessage());
-        }
     }
 }
